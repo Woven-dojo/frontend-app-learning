@@ -4,9 +4,10 @@ import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 
-import { Footer } from '@woven-dojo/dojo-frontend-common/dist/components';
 import { Toast } from '@edx/paragon';
-import { LearningHeader as Header } from '@edx/frontend-component-header';
+import { getConfig } from '@edx/frontend-platform/config';
+import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
+import { Header, Footer } from '@woven-dojo/dojo-frontend-common/dist/components';
 import PageLoading from '../generic/PageLoading';
 import { getAccessDeniedRedirectUrl } from '../shared/access';
 import { useModel } from '../generic/model-store';
@@ -37,11 +38,29 @@ function TabPage({ intl, ...props }) {
     start,
     title,
   } = useModel(metadataModel, courseId);
+  const { BASE_URL, ORDER_HISTORY_URL, LOGOUT_URL } = getConfig();
+  const authenticatedUser = getAuthenticatedUser();
+
+  const NoTitleHeader = () => (
+    <div className="page-header">
+      <Header
+        logoDestination={`${BASE_URL}/dashboard`}
+        logoDestinationTarget="_self"
+        mainMenu={[
+          {
+            label: 'Sign In',
+            href: `${BASE_URL}/login?next=${encodeURIComponent(window.location.href)}`,
+            target: '_self',
+          },
+        ]}
+      />
+    </div>
+  );
 
   if (courseStatus === 'loading') {
     return (
       <>
-        <Header />
+        <NoTitleHeader />
         <PageLoading
           srMessage={intl.formatMessage(messages.loading)}
         />
@@ -69,15 +88,57 @@ function TabPage({ intl, ...props }) {
           } : null}
           closeLabel={intl.formatMessage(genericMessages.close)}
           onClose={() => dispatch(setCallToActionToast({ header: '', link: null, link_text: null }))}
-          show={!!(toastHeader)}
+          show={!!toastHeader}
         >
           {toastHeader}
         </Toast>
-        <Header
-          courseOrg={org}
-          courseNumber={number}
-          courseTitle={title}
-        />
+        <div className="page-header">
+          {authenticatedUser ? (
+            <Header
+              logoDestination={`${BASE_URL}/dashboard`}
+              logoDestinationTarget="_self"
+              username={authenticatedUser.username}
+              title={`${org} ${number}`}
+              subtitle={title}
+              userMenu={[
+                {
+                  label: 'Dashboard',
+                  href: `${BASE_URL}/dashboard`,
+                },
+                {
+                  label: 'Profile',
+                  href: `${BASE_URL}/u/${authenticatedUser.username}`,
+                },
+                {
+                  label: 'Account',
+                  href: `${BASE_URL}/account/settings`,
+                },
+                {
+                  label: 'Order History',
+                  href: ORDER_HISTORY_URL,
+                },
+                {
+                  label: 'Logout',
+                  href: LOGOUT_URL,
+                },
+              ]}
+            />
+          ) : (
+            <Header
+              logoDestination={`${BASE_URL}/dashboard`}
+              logoDestinationTarget="_self"
+              title={`${org} ${number}`}
+              subtitle={title}
+              mainMenu={[
+                {
+                  label: 'Sign In',
+                  href: `${BASE_URL}/login?next=${encodeURIComponent(window.location.href)}`,
+                  target: '_self',
+                },
+              ]}
+            />
+          )}
+        </div>
         <LoadedTabPage {...props} />
         <Footer left={`Copyright ${new Date().getFullYear()} Dojo. All rights reserved`} className="dojo-footer" />
       </>
@@ -87,7 +148,7 @@ function TabPage({ intl, ...props }) {
   // courseStatus 'failed' and any other unexpected course status.
   return (
     <>
-      <Header />
+      <NoTitleHeader />
       <p className="text-center py-5 mx-auto" style={{ maxWidth: '30em' }}>
         {intl.formatMessage(messages.failure)}
       </p>

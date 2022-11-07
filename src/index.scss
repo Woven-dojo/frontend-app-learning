@@ -3,7 +3,6 @@
 @import "~@edx/paragon/scss/core/core";
 @import "~@edx/brand/paragon/overrides";
 
-@import "~@edx/frontend-component-footer/dist/footer";
 
 #root {
   display: flex;
@@ -34,6 +33,12 @@
   footer {
     flex: 0;
   }
+}
+
+.page-header {
+    .inline-menu li.inline-menu__item a{
+      white-space: nowrap;
+    }
 }
 
 .course-tabs-navigation {
