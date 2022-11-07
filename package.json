@@ -6,10 +6,6 @@
     "type": "git",
     "url": "git+https://github.com/edx/frontend-app-learning.git"
   },
-  "browserslist": [
-    "defaults",
-    "not IE 11"
-  ],
   "scripts": {
     "build": "fedx-scripts webpack",
     "i18n_extract": "BABEL_ENV=i18n fedx-scripts babel src --quiet > /dev/null",
@@ -32,6 +28,7 @@
   },
   "dependencies": {
     "@edx/brand": "npm:@edx/brand-openedx@1.1.0",
+    "@edx/browserslist-config": "^1.1.1",
     "@edx/frontend-enterprise-utils": "1.1.1",
     "@edx/frontend-lib-special-exams": "1.14.1",
     "@edx/frontend-platform": "1.14.3",
@@ -78,5 +75,8 @@
     "jest-chain": "1.1.5",
     "reactifex": "1.1.1",
     "rosie": "2.1.0"
-  }
+  },
+  "browserslist": [
+    "extends @edx/browserslist-config"
+  ]
 }
