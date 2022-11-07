@@ -43,17 +43,19 @@ function TabPage({ intl, ...props }) {
 
   const NoTitleHeader = () => (
     <div className="page-header">
-      <Header
-        logoDestination={`${BASE_URL}/dashboard`}
-        logoDestinationTarget="_self"
-        mainMenu={[
-          {
-            label: 'Sign In',
-            href: `${BASE_URL}/login?next=${encodeURIComponent(window.location.href)}`,
-            target: '_self',
-          },
-        ]}
-      />
+      <div className="container">
+        <Header
+          logoDestination={`${BASE_URL}/dashboard`}
+          logoDestinationTarget="_self"
+          mainMenu={[
+            {
+              label: 'Sign In',
+              href: `${BASE_URL}/login?next=${encodeURIComponent(window.location.href)}`,
+              target: '_self',
+            },
+          ]}
+        />
+      </div>
     </div>
   );
 
@@ -93,51 +95,53 @@ function TabPage({ intl, ...props }) {
           {toastHeader}
         </Toast>
         <div className="page-header">
-          {authenticatedUser ? (
-            <Header
-              logoDestination={`${BASE_URL}/dashboard`}
-              logoDestinationTarget="_self"
-              username={authenticatedUser.username}
-              title={`${org} ${number}`}
-              subtitle={title}
-              userMenu={[
-                {
-                  label: 'Dashboard',
-                  href: `${BASE_URL}/dashboard`,
-                },
-                {
-                  label: 'Profile',
-                  href: `${BASE_URL}/u/${authenticatedUser.username}`,
-                },
-                {
-                  label: 'Account',
-                  href: `${BASE_URL}/account/settings`,
-                },
-                {
-                  label: 'Order History',
-                  href: ORDER_HISTORY_URL,
-                },
-                {
-                  label: 'Logout',
-                  href: LOGOUT_URL,
-                },
-              ]}
-            />
-          ) : (
-            <Header
-              logoDestination={`${BASE_URL}/dashboard`}
-              logoDestinationTarget="_self"
-              title={`${org} ${number}`}
-              subtitle={title}
-              mainMenu={[
-                {
-                  label: 'Sign In',
-                  href: `${BASE_URL}/login?next=${encodeURIComponent(window.location.href)}`,
-                  target: '_self',
-                },
-              ]}
-            />
-          )}
+          <div className="container">
+            {authenticatedUser ? (
+              <Header
+                logoDestination={`${BASE_URL}/dashboard`}
+                logoDestinationTarget="_self"
+                username={authenticatedUser.username}
+                title={`${org} ${number}`}
+                subtitle={title}
+                userMenu={[
+                  {
+                    label: 'Dashboard',
+                    href: `${BASE_URL}/dashboard`,
+                  },
+                  {
+                    label: 'Profile',
+                    href: `${BASE_URL}/u/${authenticatedUser.username}`,
+                  },
+                  {
+                    label: 'Account',
+                    href: `${BASE_URL}/account/settings`,
+                  },
+                  {
+                    label: 'Order History',
+                    href: ORDER_HISTORY_URL,
+                  },
+                  {
+                    label: 'Logout',
+                    href: LOGOUT_URL,
+                  },
+                ]}
+              />
+            ) : (
+              <Header
+                logoDestination={`${BASE_URL}/dashboard`}
+                logoDestinationTarget="_self"
+                title={`${org} ${number}`}
+                subtitle={title}
+                mainMenu={[
+                  {
+                    label: 'Sign In',
+                    href: `${BASE_URL}/login?next=${encodeURIComponent(window.location.href)}`,
+                    target: '_self',
+                  },
+                ]}
+              />
+            )}
+          </div>
         </div>
         <LoadedTabPage {...props} />
         <Footer left={`Copyright ${new Date().getFullYear()} Dojo. All rights reserved`} className="dojo-footer" />

@@ -34,7 +34,9 @@ function GoalUnsubscribe({ intl }) {
 
   return (
     <>
-      <Header logoDestination={`${BASE_URL}/dashboard`} logoDestinationTarget="_self" />
+      <div className="container">
+        <Header logoDestination={`${BASE_URL}/dashboard`} logoDestinationTarget="_self" />
+      </div>
       <main id="main-content" className="container my-5 text-center">
         {isLoading && (
           <PageLoading srMessage={`${intl.formatMessage(messages.loading)}`} />
