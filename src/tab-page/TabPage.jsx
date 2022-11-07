@@ -38,7 +38,7 @@ function TabPage({ intl, ...props }) {
     start,
     title,
   } = useModel(metadataModel, courseId);
-  const { BASE_URL, ORDER_HISTORY_URL, LOGOUT_URL } = getConfig();
+  const { BASE_URL, LOGOUT_URL } = getConfig();
   const authenticatedUser = getAuthenticatedUser();
 
   const NoTitleHeader = () => (
@@ -115,10 +115,6 @@ function TabPage({ intl, ...props }) {
                   {
                     label: 'Account',
                     href: `${BASE_URL}/account/settings`,
-                  },
-                  {
-                    label: 'Order History',
-                    href: ORDER_HISTORY_URL,
                   },
                   {
                     label: 'Logout',
