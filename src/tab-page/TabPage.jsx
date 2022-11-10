@@ -20,19 +20,17 @@ import { setCallToActionToast } from '../course-home/data/slice';
 const NoTitleHeader = () => {
   const { BASE_URL } = getConfig();
   return (
-    <div className="container">
-      <Header
-        logoDestination={`${BASE_URL}/dashboard`}
-        logoDestinationTarget="_self"
-        mainMenu={[
-          {
-            label: 'Sign In',
-            href: `${BASE_URL}/login?next=${encodeURIComponent(window.location.href)}`,
-            target: '_self',
-          },
-        ]}
-      />
-    </div>
+    <Header
+      logoDestination={`${BASE_URL}/dashboard`}
+      logoDestinationTarget="_self"
+      mainMenu={[
+        {
+          label: 'Sign In',
+          href: `${BASE_URL}/login?next=${encodeURIComponent(window.location.href)}`,
+          target: '_self',
+        },
+      ]}
+    />
   );
 };
 
@@ -95,49 +93,47 @@ function TabPage({ intl, ...props }) {
         >
           {toastHeader}
         </Toast>
-        <div className="container">
-          {authenticatedUser ? (
-            <Header
-              logoDestination={`${BASE_URL}/dashboard`}
-              logoDestinationTarget="_self"
-              username={authenticatedUser.username}
-              title={`${org} ${number}`}
-              subtitle={title}
-              userMenu={[
-                {
-                  label: 'Dashboard',
-                  href: `${BASE_URL}/dashboard`,
-                },
-                {
-                  label: 'Profile',
-                  href: `${BASE_URL}/u/${authenticatedUser.username}`,
-                },
-                {
-                  label: 'Account',
-                  href: `${BASE_URL}/account/settings`,
-                },
-                {
-                  label: 'Logout',
-                  href: LOGOUT_URL,
-                },
-              ]}
-            />
-          ) : (
-            <Header
-              logoDestination={`${BASE_URL}/dashboard`}
-              logoDestinationTarget="_self"
-              title={`${org} ${number}`}
-              subtitle={title}
-              mainMenu={[
-                {
-                  label: 'Sign In',
-                  href: `${BASE_URL}/login?next=${encodeURIComponent(window.location.href)}`,
-                  target: '_self',
-                },
-              ]}
-            />
-          )}
-        </div>
+        {authenticatedUser ? (
+          <Header
+            logoDestination={`${BASE_URL}/dashboard`}
+            logoDestinationTarget="_self"
+            username={authenticatedUser.username}
+            title={`${org} ${number}`}
+            subtitle={title}
+            userMenu={[
+              {
+                label: 'Dashboard',
+                href: `${BASE_URL}/dashboard`,
+              },
+              {
+                label: 'Profile',
+                href: `${BASE_URL}/u/${authenticatedUser.username}`,
+              },
+              {
+                label: 'Account',
+                href: `${BASE_URL}/account/settings`,
+              },
+              {
+                label: 'Logout',
+                href: LOGOUT_URL,
+              },
+            ]}
+          />
+        ) : (
+          <Header
+            logoDestination={`${BASE_URL}/dashboard`}
+            logoDestinationTarget="_self"
+            title={`${org} ${number}`}
+            subtitle={title}
+            mainMenu={[
+              {
+                label: 'Sign In',
+                href: `${BASE_URL}/login?next=${encodeURIComponent(window.location.href)}`,
+                target: '_self',
+              },
+            ]}
+          />
+        )}
         <LoadedTabPage {...props} />
         <Footer left={`Copyright ${new Date().getFullYear()} Dojo. All rights reserved`} />
       </>
