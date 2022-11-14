@@ -28,7 +28,7 @@ function CelebrationModal({
     if (open) {
       recordFirstSectionCelebration(org, courseId);
     }
-  }, [open]);
+  }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Modal

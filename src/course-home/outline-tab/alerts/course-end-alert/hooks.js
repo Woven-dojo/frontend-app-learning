@@ -23,15 +23,15 @@ export function useCourseEndAlert(courseId) {
   const endDate = endBlock ? new Date(endBlock.date) : null;
   const delta = endBlock ? endDate - new Date() : 0;
   const isVisible = isEnrolled && endBlock && delta > 0 && delta < WARNING_PERIOD_MS;
-  const payload = {
-    description: endBlock && endBlock.description,
-    endDate: endBlock && endBlock.date,
-    userTimezone,
-  };
+  const description = endBlock && endBlock.description;
+  const endDateParam = endBlock && endBlock.date;
 
   useAlert(isVisible, {
     code: 'clientCourseEndAlert',
-    payload: useMemo(() => payload, Object.values(payload).sort()),
+    payload: useMemo(
+      () => ({ description, endDate: endDateParam, userTimezone }),
+      [description, endDateParam, userTimezone],
+    ),
     topic: 'outline-course-alerts',
   });
 

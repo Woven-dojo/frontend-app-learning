@@ -67,7 +67,7 @@ function useLoadBearingHook(id) {
   const setValue = useState(0)[1];
   useLayoutEffect(() => {
     setValue(currentValue => currentValue + 1);
-  }, [id]);
+  }, [setValue, id]);
 }
 
 export function sendUrlHashToFrame(frame) {
@@ -118,7 +118,7 @@ function Unit({
     } else {
       setShouldDisplayHonorCode(false);
     }
-  }, [userNeedsIntegritySignature]);
+  }, [userNeedsIntegritySignature, unit.graded]);
 
   // We use this ref so that we can hold a reference to the currently active event listener.
   const messageEventListenerRef = useRef(null);

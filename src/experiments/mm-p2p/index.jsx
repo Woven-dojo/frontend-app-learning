@@ -59,7 +59,7 @@ const externalConfig = {
   ],
 };
 
-const initDatesMMP2P = () => {
+const useInitDatesMMP2P = () => {
   location = 'dates';
 
   const defaultState = {
@@ -87,7 +87,7 @@ const initDatesMMP2P = () => {
   };
 };
 
-const initHomeMMP2P = (courseId) => {
+const useInitHomeMMP2P = (courseId) => {
   location = 'home';
 
   const defaultState = {
@@ -146,7 +146,7 @@ const initHomeMMP2P = (courseId) => {
   };
 };
 
-const initCoursewareMMP2P = (courseId, sequenceId, unitId) => {
+const useInitCoursewareMMP2P = (courseId, sequenceId, unitId) => {
   location = 'course';
 
   const defaultState = {
@@ -264,7 +264,7 @@ export {
   MMP2PFlyoverTriggerMobile,
   MMP2PLockPaywall,
   MMP2PSidecard,
-  initCoursewareMMP2P,
-  initHomeMMP2P,
-  initDatesMMP2P,
+  useInitCoursewareMMP2P,
+  useInitHomeMMP2P,
+  useInitDatesMMP2P,
 };

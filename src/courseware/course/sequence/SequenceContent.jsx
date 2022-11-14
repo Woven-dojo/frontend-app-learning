@@ -20,6 +20,7 @@ function SequenceContent({
   /** [MM-P2P] Experiment */
   mmp2p,
 }) {
+  const unit = useModel('units', unitId);
   const sequence = useModel('sequences', sequenceId);
 
   // Go back to the top of the page whenever the unit or sequence changes.
@@ -46,7 +47,6 @@ function SequenceContent({
     );
   }
 
-  const unit = useModel('units', unitId);
   if (!unitId || !unit) {
     return (
       <div>

@@ -31,5 +31,5 @@ export function useAlert(isVisible, {
     return () => {
       remove(cleanupId);
     };
-  }, [isVisible, code, text, topic, type, payload, dismissible]);
+  }, [add, remove, isVisible, code, text, topic, type, payload, dismissible]);
 }

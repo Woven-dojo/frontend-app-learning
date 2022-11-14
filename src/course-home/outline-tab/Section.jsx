@@ -38,7 +38,7 @@ function Section({
 
   useEffect(() => {
     setOpen(defaultOpen);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const sectionTitle = (
     <div className="row w-100 m-0">

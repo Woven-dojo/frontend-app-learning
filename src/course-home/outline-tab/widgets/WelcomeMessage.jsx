@@ -16,10 +16,6 @@ function WelcomeMessage({ courseId, intl }) {
     welcomeMessageHtml,
   } = useModel('outline', courseId);
 
-  if (!welcomeMessageHtml) {
-    return null;
-  }
-
   const [display, setDisplay] = useState(true);
 
   const shortWelcomeMessageHtml = truncate(welcomeMessageHtml, 100, { byWords: true, keepWhitespaces: true });

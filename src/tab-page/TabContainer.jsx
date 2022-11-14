@@ -19,7 +19,7 @@ export default function TabContainer(props) {
   useEffect(() => {
     // The courseId from the URL is the course we WANT to load.
     dispatch(fetch(courseIdFromUrl));
-  }, [courseIdFromUrl]);
+  }, [dispatch, fetch, courseIdFromUrl]);
 
   // The courseId from the store is the course we HAVE loaded.  If the URL changes,
   // we don't want the application to adjust to it until it has actually loaded the new data.

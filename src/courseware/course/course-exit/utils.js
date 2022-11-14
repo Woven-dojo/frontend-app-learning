@@ -72,7 +72,7 @@ function getCourseExitNavigation(courseId, intl) {
     isEnrolled,
     userHasPassingGrade,
     courseExitPageIsActive,
-  } = useModel('coursewareMeta', courseId);
+  } = useModel('coursewareMeta', courseId); // eslint-disable-line react-hooks/rules-of-hooks
   const exitMode = getCourseExitMode(
     certificateData,
     hasScheduledContent,

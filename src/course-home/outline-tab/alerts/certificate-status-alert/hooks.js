@@ -80,22 +80,36 @@ function useCertificateStatusAlert(courseId) {
     && hasEnded
     && !userHasPassingGrade
   );
-  const payload = {
-    certificateAvailableDate,
-    certURL,
-    certStatus,
-    courseId,
-    courseEndDate: endBlock && endBlock.date,
-    userTimezone,
-    isWebCert,
-    org,
-    notPassingCourseEnded,
-    tabs,
-  };
+  const courseEndDate = endBlock && endBlock.date;
 
   useAlert(isVisible || notPassingCourseEnded, {
     code: 'clientCertificateStatusAlert',
-    payload: useMemo(() => payload, Object.values(payload).sort()),
+    payload: useMemo(
+      () => ({
+        certificateAvailableDate,
+        certURL,
+        certStatus,
+        courseId,
+        courseEndDate,
+        userTimezone,
+        isWebCert,
+        org,
+        notPassingCourseEnded,
+        tabs,
+      }),
+      [
+        certificateAvailableDate,
+        certURL,
+        certStatus,
+        courseId,
+        courseEndDate,
+        userTimezone,
+        isWebCert,
+        org,
+        notPassingCourseEnded,
+        tabs,
+      ],
+    ),
     topic: 'outline-course-alerts',
   });
 

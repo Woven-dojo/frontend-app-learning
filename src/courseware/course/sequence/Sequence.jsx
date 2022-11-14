@@ -115,7 +115,7 @@ function Sequence({
         remove(id);
       }
     };
-  }, [sequenceStatus, sequence]);
+  }, [add, remove, sequenceStatus, sequence]);
 
   const [unitHasLoaded, setUnitHasLoaded] = useState(false);
   const handleUnitLoaded = () => {
@@ -130,7 +130,7 @@ function Sequence({
     if (unit) {
       setUnitHasLoaded(false);
     }
-  }, [(unit || {}).id]);
+  }, [(unit || {}).id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (sequenceStatus === 'loading') {
     if (!sequenceId) {

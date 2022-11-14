@@ -22,16 +22,15 @@ export function useEnrollmentAlert(courseId) {
    *    3. the course is private.
    */
   const isVisible = !enrolledUser && authenticatedUser !== null && privateOutline;
-  const payload = {
-    canEnroll: outline && outline.enrollAlert ? outline.enrollAlert.canEnroll : false,
-    courseId,
-    extraText: outline && outline.enrollAlert ? outline.enrollAlert.extraText : '',
-    isStaff: course && course.isStaff,
-  };
+  const canEnroll = outline && outline.enrollAlert ? outline.enrollAlert.canEnroll : false;
+  const extraText = outline && outline.enrollAlert ? outline.enrollAlert.extraText : '';
+  const isStaff = course && course.isStaff;
 
   useAlert(isVisible, {
     code: 'clientEnrollmentAlert',
-    payload: useMemo(() => payload, Object.values(payload).sort()),
+    payload: useMemo(() => ({
+      canEnroll, courseId, extraText, isStaff,
+    }), [canEnroll, courseId, extraText, isStaff]),
     topic: 'outline',
   });
 

@@ -96,7 +96,7 @@ function ProctoringInfoPanel({ courseId, username, intl }) {
           }
         },
       );
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   let onboardingExamButton = null;
 

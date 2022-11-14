@@ -29,7 +29,7 @@ function GoalUnsubscribe({ intl }) {
           setIsLoading(false);
           setError(true);
         },
-      );
+      );// eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // deps=[] to only run once
 
   return (

@@ -43,7 +43,7 @@ export default function useWindowSize() {
     };
     global.addEventListener('resize', handleResize);
     return () => global.removeEventListener('resize', handleResize);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return windowSize;
 }

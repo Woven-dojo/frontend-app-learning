@@ -22,7 +22,7 @@ function UnitButton({
 }) {
   const handleClick = useCallback(() => {
     onClick(unitId);
-  });
+  }, [onClick, unitId]);
 
   return (
     <Button

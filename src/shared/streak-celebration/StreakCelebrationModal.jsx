@@ -45,9 +45,6 @@ function StreakModal({
   courseId, metadataModel, streakLengthToCelebrate, intl, isStreakCelebrationOpen,
   closeStreakCelebration, StreakDiscountCouponEnabled, verifiedMode, ...rest
 }) {
-  if (!isStreakCelebrationOpen) {
-    return null;
-  }
   const { org, celebrations } = useModel(metadataModel, courseId);
   const factoid = getRandomFactoid(intl, streakLengthToCelebrate);
   // eslint-disable-next-line no-unused-vars

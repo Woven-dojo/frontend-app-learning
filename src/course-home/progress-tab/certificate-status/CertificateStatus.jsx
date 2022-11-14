@@ -193,7 +193,7 @@ function CertificateStatus({ intl }) {
       grade_variant: gradeEventName,
       certificate_status_variant: certEventName,
     });
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!certCase) {
     return null;

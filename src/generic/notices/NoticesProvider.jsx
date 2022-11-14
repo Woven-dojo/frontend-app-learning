@@ -10,14 +10,17 @@ import { getNotices } from './api';
  */
 const NoticesProvider = ({ children }) => {
   const [isRedirected, setIsRedirected] = useState();
-  useEffect(async () => {
-    if (getConfig().ENABLE_NOTICES) {
+  useEffect(() => {
+    async function fetchNotices() {
       const data = await getNotices();
       if (data && data.results && data.results.length > 0) {
         const { results } = data;
         setIsRedirected(true);
         window.location.replace(`${results[0]}?next=${window.location.href}`);
       }
+    }
+    if (getConfig().ENABLE_NOTICES) {
+      fetchNotices();
     }
   }, []);
 

@@ -36,7 +36,7 @@ export default function BookmarkButton({
     } else {
       dispatch(addBookmark(unitId));
     }
-  }, [isBookmarked, unitId]);
+  }, [dispatch, isBookmarked, unitId]);
 
   return (
     <StatefulButton
