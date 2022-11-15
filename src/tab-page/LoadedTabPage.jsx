@@ -53,15 +53,17 @@ function LoadedTabPage({
           tab={activeTabSlug}
         />
       )}
-      <StreakModal
-        courseId={courseId}
-        metadataModel={metadataModel}
-        streakLengthToCelebrate={streakLengthToCelebrate}
-        isStreakCelebrationOpen={!!isStreakCelebrationOpen}
-        closeStreakCelebration={closeStreakCelebration}
-        StreakDiscountCouponEnabled={StreakDiscountCouponEnabled}
-        verifiedMode={verifiedMode}
-      />
+      {!!isStreakCelebrationOpen && (
+        <StreakModal
+          courseId={courseId}
+          metadataModel={metadataModel}
+          streakLengthToCelebrate={streakLengthToCelebrate}
+          isStreakCelebrationOpen={!!isStreakCelebrationOpen}
+          closeStreakCelebration={closeStreakCelebration}
+          StreakDiscountCouponEnabled={StreakDiscountCouponEnabled}
+          verifiedMode={verifiedMode}
+        />
+      )}
       <main id="main-content" className="d-flex flex-column flex-grow-1">
         <AlertList
           topic="outline"

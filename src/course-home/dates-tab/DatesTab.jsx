@@ -10,7 +10,7 @@ import { fetchDatesTab } from '../data';
 import { useModel } from '../../generic/model-store';
 
 /** [MM-P2P] Experiment */
-import { initDatesMMP2P } from '../../experiments/mm-p2p';
+import { useInitDatesMMP2P } from '../../experiments/mm-p2p';
 import SuggestedScheduleHeader from '../suggested-schedule-messaging/SuggestedScheduleHeader';
 import ShiftDatesAlert from '../suggested-schedule-messaging/ShiftDatesAlert';
 import UpgradeToCompleteAlert from '../suggested-schedule-messaging/UpgradeToCompleteAlert';
@@ -31,7 +31,7 @@ function DatesTab({ intl }) {
   } = useModel('dates', courseId);
 
   /** [MM-P2P] Experiment */
-  const mmp2p = initDatesMMP2P(courseId);
+  const mmp2p = useInitDatesMMP2P(courseId);
 
   const hasDeadlines = courseDateBlocks && courseDateBlocks.some(x => x.dateType === 'assignment-due-date');
 

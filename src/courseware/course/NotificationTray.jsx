@@ -33,7 +33,7 @@ function NotificationTray({
   const shouldDisplayFullScreen = useWindowSize().width < responsiveBreakpoints.large.minWidth;
 
   // After three seconds, update notificationSeen (to hide red dot)
-  useEffect(() => { setTimeout(onNotificationSeen, 3000); }, []);
+  useEffect(() => { setTimeout(onNotificationSeen, 3000); }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <section className={classNames('notification-tray-container ml-0 ml-lg-4', { 'no-notification': !verifiedMode && !shouldDisplayFullScreen })} aria-label={intl.formatMessage(messages.notificationTray)}>

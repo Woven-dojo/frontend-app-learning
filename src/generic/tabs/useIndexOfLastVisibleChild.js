@@ -36,6 +36,7 @@ export default function useIndexOfLastVisibleChild() {
   const containingRectRef = useRef({});
   const [indexOfLastVisibleChild, setIndexOfLastVisibleChild] = useState(-1);
   const windowSize = useWindowSize();
+  const currentContainerElementRef = containerElementRef.current;
 
   useLayoutEffect(() => {
     const containingRect = containerElementRef.current.getBoundingClientRect();
@@ -71,7 +72,7 @@ export default function useIndexOfLastVisibleChild() {
       });
 
     setIndexOfLastVisibleChild(nextIndexOfLastVisibleChild);
-  }, [windowSize, containerElementRef.current]);
+  }, [windowSize, currentContainerElementRef]);
 
   return [indexOfLastVisibleChild, containerElementRef, invisibleStyle, overflowElementRef];
 }

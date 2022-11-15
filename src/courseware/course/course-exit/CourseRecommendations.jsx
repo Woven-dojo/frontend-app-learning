@@ -146,7 +146,7 @@ function CourseRecommendations({ intl, variant }) {
 
   useEffect(() => {
     dispatch(fetchCourseRecommendations(courseKey, courseId));
-  }, [dispatch]);
+  }, [dispatch]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (recommendationsStatus && recommendationsStatus !== LOADING) {
     sendTrackEvent('edx.ui.lms.course_exit.recommendations.viewed', {

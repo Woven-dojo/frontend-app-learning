@@ -18,7 +18,7 @@ import useWindowSize, { responsiveBreakpoints } from '../../generic/tabs/useWind
 import { getLocalStorage, setLocalStorage } from '../../data/localStorage';
 
 /** [MM-P2P] Experiment */
-import { initCoursewareMMP2P, MMP2PBlockModal } from '../../experiments/mm-p2p';
+import { useInitCoursewareMMP2P, MMP2PBlockModal } from '../../experiments/mm-p2p';
 
 function Course({
   courseId,
@@ -54,12 +54,9 @@ function Course({
 
   const shouldDisplayNotificationTrayOpen = useWindowSize().width > responsiveBreakpoints.medium.minWidth;
 
-  const [notificationTrayVisible, setNotificationTray] = verifiedMode
-    && shouldDisplayNotificationTrayOpen ? useState(true) : useState(false);
+  const [notificationTrayVisible, setNotificationTray] = useState(verifiedMode && !!shouldDisplayNotificationTrayOpen);
   const isNotificationTrayVisible = () => notificationTrayVisible && setNotificationTray;
-  const toggleNotificationTray = () => {
-    if (notificationTrayVisible) { setNotificationTray(false); } else { setNotificationTray(true); }
-  };
+  const toggleNotificationTray = () => setNotificationTray(!notificationTrayVisible);
 
   if (!getLocalStorage('notificationStatus')) {
     setLocalStorage('notificationStatus', 'active'); // Show red dot on notificationTrigger until seen
@@ -78,7 +75,7 @@ function Course({
   };
 
   /** [MM-P2P] Experiment */
-  const MMP2P = initCoursewareMMP2P(courseId, sequenceId, unitId);
+  const MMP2P = useInitCoursewareMMP2P(courseId, sequenceId, unitId);
 
   return (
     <>

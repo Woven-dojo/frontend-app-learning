@@ -13,7 +13,7 @@ function ContentLock({
 }) {
   const handleClick = useCallback(() => {
     history.push(`/course/${courseId}/${prereqId}`);
-  });
+  }, [courseId, prereqId]);
 
   return (
     <>

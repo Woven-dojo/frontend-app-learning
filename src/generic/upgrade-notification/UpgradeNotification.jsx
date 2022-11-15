@@ -320,10 +320,6 @@ function UpgradeNotification({
   const timezoneFormatArgs = userTimezone ? { timeZone: userTimezone } : {};
   const correctedTime = new Date(Date.now() + timeOffsetMillis);
 
-  if (!verifiedMode) {
-    return null;
-  }
-
   const eventProperties = {
     org_key: org,
     courserun_key: courseId,
@@ -340,7 +336,7 @@ function UpgradeNotification({
   useEffect(() => {
     sendTrackingLogEvent('edx.bi.course.upgrade.sidebarupsell.displayed', eventProperties);
     sendTrackEvent('Promotion Viewed', promotionEventProperties);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const logClick = () => {
     sendTrackingLogEvent('edx.bi.course.upgrade.sidebarupsell.clicked', eventProperties);

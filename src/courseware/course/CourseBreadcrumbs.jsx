@@ -93,7 +93,7 @@ export default function CourseBreadcrumbs({
   const allSequencesInSections = Object.fromEntries(useModels('sections', course.sectionIds).map(section => [section.id, {
     default: section.id === sectionId,
     title: section.title,
-    sequences: useModels('sequences', section.sequenceIds),
+    sequences: useModels('sequences', section.sequenceIds), // eslint-disable-line react-hooks/rules-of-hooks
   }]));
 
   const links = useMemo(() => {
@@ -120,7 +120,7 @@ export default function CourseBreadcrumbs({
       });
     }
     return [chapters, sequentials];
-  }, [courseStatus, sequenceStatus, allSequencesInSections]);
+  }, [sequenceId, courseStatus, sequenceStatus, allSequencesInSections]);
 
   return (
     <nav aria-label="breadcrumb" className="my-4 d-inline-block col-sm-10">

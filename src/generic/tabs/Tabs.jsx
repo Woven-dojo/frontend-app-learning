@@ -49,7 +49,7 @@ export default function Tabs({ children, className, ...attrs }) {
       </div>
     ));
     return wrappedChildren;
-  }, [children, indexOfLastVisibleChild]);
+  }, [children, indexOfLastVisibleChild]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <nav

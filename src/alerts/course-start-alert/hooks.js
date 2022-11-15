@@ -8,7 +8,7 @@ const CourseStartMasqueradeBanner = React.lazy(() => import('./CourseStartMasque
 function isStartDateInFuture(courseId) {
   const {
     start,
-  } = useModel('courseHomeMeta', courseId);
+  } = useModel('courseHomeMeta', courseId); // eslint-disable-line react-hooks/rules-of-hooks
 
   const today = new Date();
   const startDate = new Date(start);
@@ -22,13 +22,9 @@ function useCourseStartAlert(courseId) {
 
   const isVisible = isEnrolled && isStartDateInFuture(courseId);
 
-  const payload = {
-    courseId,
-  };
-
   useAlert(isVisible, {
     code: 'clientCourseStartAlert',
-    payload: useMemo(() => payload, Object.values(payload).sort()),
+    payload: useMemo(() => ({ courseId }), [courseId]),
     topic: 'outline-course-alerts',
   });
 
@@ -44,13 +40,9 @@ export function useCourseStartMasqueradeBanner(courseId, tab) {
 
   const isVisible = isMasquerading && tab === 'progress' && isStartDateInFuture(courseId);
 
-  const payload = {
-    courseId,
-  };
-
   useAlert(isVisible, {
     code: 'clientCourseStartMasqueradeBanner',
-    payload: useMemo(() => payload, Object.values(payload).sort()),
+    payload: useMemo(() => ({ courseId }), [courseId]),
     topic: 'instructor-toolbar-alerts',
   });
 

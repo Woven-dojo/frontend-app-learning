@@ -24,6 +24,8 @@ function ShiftDatesAlert({ fetch, intl, model }) {
     hasEnded,
   } = useModel(model, courseId);
 
+  const dispatch = useDispatch();
+
   const {
     missedDeadlines,
     missedGatedContent,
@@ -32,8 +34,6 @@ function ShiftDatesAlert({ fetch, intl, model }) {
   if (!missedDeadlines || missedGatedContent || hasEnded) {
     return null;
   }
-
-  const dispatch = useDispatch();
 
   return (
     <Alert variant="warning">

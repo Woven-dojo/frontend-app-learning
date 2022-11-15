@@ -1,6 +1,4 @@
 /* eslint-disable no-console */
-import { useContext } from 'react';
-import { AppContext } from '@edx/frontend-platform/react';
 import util from 'util';
 
 export const isMobile = () => {
@@ -9,8 +7,6 @@ export const isMobile = () => {
     userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i),
   );
 };
-
-export const getUser = () => useContext(AppContext).authenticatedUser;
 
 const staticReturnOptions = [
   'dict',

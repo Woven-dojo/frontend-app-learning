@@ -30,7 +30,7 @@ import ProctoringInfoPanel from './widgets/ProctoringInfoPanel';
 import AccountActivationAlert from '../../alerts/logistration-alert/AccountActivationAlert';
 
 /** [MM-P2P] Experiment */
-import { initHomeMMP2P, MMP2PFlyover } from '../../experiments/mm-p2p';
+import { useInitHomeMMP2P, MMP2PFlyover } from '../../experiments/mm-p2p';
 
 function OutlineTab({ intl }) {
   const {
@@ -66,6 +66,7 @@ function OutlineTab({ intl }) {
     offer,
     timeOffsetMillis,
     verifiedMode,
+    welcomeMessageHtml,
   } = useModel('outline', courseId);
 
   const [courseGoalToDisplay, setCourseGoalToDisplay] = useState(selectedGoal);
@@ -114,7 +115,7 @@ function OutlineTab({ intl }) {
   };
 
   /** [[MM-P2P] Experiment */
-  const MMP2P = initHomeMMP2P(courseId);
+  const MMP2P = useInitHomeMMP2P(courseId);
 
   /** show post enrolment survey to only B2C learners */
   const learnerType = isEnterpriseUser() ? 'enterprise_learner' : 'b2c_learner';
@@ -181,7 +182,7 @@ function OutlineTab({ intl }) {
               setGoalToastHeader={(newHeader) => { setGoalToastHeader(newHeader); }}
             />
           )}
-          <WelcomeMessage courseId={courseId} />
+          {!!welcomeMessageHtml && <WelcomeMessage courseId={courseId} />}
           {rootCourseId && (
             <>
               <div className="row w-100 m-0 mb-3 justify-content-end">
@@ -227,18 +228,20 @@ function OutlineTab({ intl }) {
             { MMP2P.state.isEnabled
               ? <MMP2PFlyover isStatic options={MMP2P} />
               : (
-                <UpgradeNotification
-                  offer={offer}
-                  verifiedMode={verifiedMode}
-                  accessExpiration={accessExpiration}
-                  contentTypeGatingEnabled={datesBannerInfo.contentTypeGatingEnabled}
-                  upsellPageName="course_home"
-                  userTimezone={userTimezone}
-                  shouldDisplayBorder
-                  timeOffsetMillis={timeOffsetMillis}
-                  courseId={courseId}
-                  org={org}
-                />
+                !!verifiedMode && (
+                  <UpgradeNotification
+                    offer={offer}
+                    verifiedMode={verifiedMode}
+                    accessExpiration={accessExpiration}
+                    contentTypeGatingEnabled={datesBannerInfo.contentTypeGatingEnabled}
+                    upsellPageName="course_home"
+                    userTimezone={userTimezone}
+                    shouldDisplayBorder
+                    timeOffsetMillis={timeOffsetMillis}
+                    courseId={courseId}
+                    org={org}
+                  />
+                )
               )}
             <CourseDates
               courseId={courseId}
