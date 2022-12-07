@@ -27,6 +27,7 @@ import { fetchDatesTab, fetchOutlineTab, fetchProgressTab } from './course-home/
 import { fetchCourse } from './courseware/data';
 import initializeStore from './store';
 import NoticesProvider from './generic/notices';
+import DojoHome from './course-home/dojo-home/DojoHome';
 
 subscribe(APP_READY, () => {
   ReactDOM.render(
@@ -36,6 +37,9 @@ subscribe(APP_READY, () => {
           <Switch>
             <PageRoute exact path="/goal-unsubscribe/:token" component={GoalUnsubscribe} />
             <PageRoute path="/redirect" component={CoursewareRedirectLandingPage} />
+            <PageRoute path="/course/:courseId/dojo-home">
+              <DojoHome />
+            </PageRoute>
             <PageRoute path="/course/:courseId/home">
               <TabContainer tab="outline" fetch={fetchOutlineTab} slice="courseHome">
                 <OutlineTab />

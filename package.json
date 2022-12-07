@@ -40,7 +40,7 @@
     "@fortawesome/react-fontawesome": "0.1.15",
     "@pact-foundation/pact": "9.16.4",
     "@reduxjs/toolkit": "1.6.2",
-    "@woven-dojo/dojo-frontend-common": "^1.1.25",
+    "@woven-dojo/dojo-frontend-common": "^1.1.31",
     "classnames": "2.3.1",
     "core-js": "3.18.3",
     "js-cookie": "3.0.1",
