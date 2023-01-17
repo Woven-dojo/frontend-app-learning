@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { getConfig } from '@edx/frontend-platform/config';
 
-import { Header } from '@woven-dojo/dojo-frontend-common/dist/components';
+import { Header } from '@woven-dojo/dojo-frontend-ui';
 import PageLoading from '../../generic/PageLoading';
 import { unsubscribeFromCourseGoal } from '../data/api';
 
